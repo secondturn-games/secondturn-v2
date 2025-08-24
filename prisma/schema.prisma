@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,41 +7,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// User Profile - extends Clerk user data
 model UserProfile {
-  id        String   @id @default(cuid())
-  clerkId   String   @unique // Links to Clerk user ID
-  email     String
-  firstName String?
-  lastName  String?
-  location  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  listings Listing[]
+  id                 String    @id @default(cuid())
+  clerkId            String    @unique
+  email              String    @unique
+  firstName          String?
+  lastName           String?
+  displayName        String?
+  bio                String?
+  location           String?
+  phone              String?
+  avatarUrl          String?
+  emailNotifications Boolean   @default(true)
+  smsNotifications   Boolean   @default(false)
+  language           String    @default("en")
+  favoriteGenres     String[]
+  gameCollection     String[]
+  totalListings      Int       @default(0)
+  totalSales         Int       @default(0)
+  isVerified         Boolean   @default(false)
+  trustScore         Int       @default(100)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  lastActive         DateTime  @default(now())
+  listings           Listing[]
+  receivedReviews    Review[]  @relation("ReceivedReviews")
+  reviews            Review[]  @relation("UserReviews")
+  favorites          Listing[] @relation("UserFavorites")
 
   @@map("user_profiles")
 }
 
-// Game Listing
 model Listing {
-  id          String   @id @default(cuid())
+  id          String        @id @default(cuid())
   title       String
   description String?
-  price       Decimal  @db.Decimal(10, 2)
-  condition   String   // New, Like New, Good, Used, Fair
+  price       Decimal       @db.Decimal(10, 2)
+  condition   String
   location    String?
   imageUrl    String?
-  
-  // Relations
+  genre       String?
+  playerCount String?
+  ageRange    String?
+  language    String?
+  expansion   Boolean       @default(false)
   userId      String
-  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  // Metadata
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  isActive    Boolean  @default(true)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  isActive    Boolean       @default(true)
+  views       Int           @default(0)
+  favorites   Int           @default(0)
+  user        UserProfile   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  favoritedBy UserProfile[] @relation("UserFavorites")
 
   @@map("listings")
+}
+
+model Review {
+  id             String      @id @default(cuid())
+  rating         Int
+  comment        String?
+  reviewerId     String
+  reviewedUserId String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  reviewedUser   UserProfile @relation("ReceivedReviews", fields: [reviewedUserId], references: [id], onDelete: Cascade)
+  reviewer       UserProfile @relation("UserReviews", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  @@unique([reviewerId, reviewedUserId])
+  @@map("reviews")
 }
