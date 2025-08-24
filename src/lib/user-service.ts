@@ -52,6 +52,8 @@ export interface UserProfileWithStats {
  */
 export async function createUserProfile(userData: CreateUserProfileData) {
   try {
+    console.log('createUserProfile called with data:', userData)
+    
     const userProfile = await prisma.userProfile.create({
       data: {
         clerkId: userData.clerkId,
@@ -65,10 +67,15 @@ export async function createUserProfile(userData: CreateUserProfileData) {
       },
     })
 
-    console.log(`Created user profile for ${userData.email}`)
+    console.log(`Created user profile successfully:`, userProfile)
     return { success: true, data: userProfile }
   } catch (error) {
     console.error('Error creating user profile:', error)
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      userData
+    })
     return { 
       success: false, 
       error: error instanceof Error ? error.message : 'Failed to create user profile' 

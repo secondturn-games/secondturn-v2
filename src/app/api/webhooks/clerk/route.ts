@@ -50,9 +50,14 @@ export async function POST(req: Request) {
         case 'user.created':
           // New user signed up - create profile in our database
           const { id, email_addresses, first_name, last_name, image_url } = evt.data
+          console.log('Processing user.created event:', { id, first_name, last_name, image_url })
+          
           const primaryEmail = email_addresses?.find(email => email.id === evt.data.primary_email_address_id)
+          console.log('Primary email found:', primaryEmail)
           
           if (primaryEmail) {
+            console.log('Attempting to create user profile for:', primaryEmail.email_address)
+            
             const result = await createUserProfile({
               clerkId: id,
               email: primaryEmail.email_address,
@@ -66,7 +71,10 @@ export async function POST(req: Request) {
               return new Response('Failed to create user profile', { status: 500 })
             }
             
-            console.log(`User profile created for ${primaryEmail.email_address}`)
+            console.log(`User profile created successfully for ${primaryEmail.email_address}`)
+          } else {
+            console.error('No primary email found for user:', id)
+            return new Response('No primary email found', { status: 400 })
           }
           break
 
