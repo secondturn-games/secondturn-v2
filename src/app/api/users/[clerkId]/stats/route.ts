@@ -2,9 +2,13 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getUserStats } from '@/lib/user-service'
 import { auth } from '@clerk/nextjs/server'
 
+interface RouteParams {
+  params: Promise<{ clerkId: string }>
+}
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { clerkId: string } }
+  { params }: RouteParams
 ) {
   try {
     // Get the authenticated user
@@ -17,15 +21,18 @@ export async function GET(
       )
     }
 
+    // Resolve the params promise
+    const { clerkId } = await params
+
     // Users can only access their own stats
-    if (userId !== params.clerkId) {
+    if (userId !== clerkId) {
       return NextResponse.json(
         { error: 'Forbidden - Cannot access other user stats' },
         { status: 403 }
       )
     }
 
-    const result = await getUserStats(params.clerkId)
+    const result = await getUserStats(clerkId)
     
     if (!result.success) {
       return NextResponse.json(
