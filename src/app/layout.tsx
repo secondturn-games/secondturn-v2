@@ -10,8 +10,10 @@ const geist = Geist({
 });
 
 const adumu = localFont({
-  src: "../fonts/Adumu.ttf",
+  src: "../fonts/Adumu-Inline.ttf", // Using Inline variant for better visibility
   variable: "--font-adumu",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -28,7 +30,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className={`${geist.variable} ${adumu.variable}`}>
         <body className="bg-light-beige text-dark-green font-sans min-h-screen">
-                            <header className="border-b border-dark-green/10 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+          {/* Font Test - Remove this after confirming Adumu works */}
+          <div className="fixed top-4 right-4 z-50 bg-white p-2 rounded shadow text-xs">
+            <div className="font-display text-vibrant-orange-500">Adumu Test</div>
+            <div className="font-sans text-dark-green-500">Geist Test</div>
+          </div>
+          
+          <header className="border-b border-dark-green/10 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
                     <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
                       {/* Logo / Brand */}
                       <div className="flex items-center gap-3 group">
