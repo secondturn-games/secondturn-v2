@@ -42,8 +42,6 @@ const config: Config = {
       fontFamily: {
         sans: 'var(--font-fredoka), sans-serif',
         display: 'var(--font-righteous), sans-serif',
-        heading: 'var(--font-righteous), sans-serif',
-        title: 'var(--font-righteous), sans-serif',
       },
       fontSize: {
         // Enhanced typography scale for better readability

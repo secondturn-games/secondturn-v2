@@ -102,7 +102,7 @@ src/
 ├── components/          # Reusable UI components
 │   └── ui/             # shadcn/ui components
 ├── lib/                 # Utility functions
-└── fonts/               # Custom fonts (Adumu)
+└── fonts/               # Google Fonts (Righteous, Fredoka)
 ```
 
 ### Available Scripts
