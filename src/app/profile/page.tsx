@@ -7,23 +7,23 @@ export default function ProfilePage() {
   
   return (
     <section className="space-y-6">
-      <SignedOut>
-        <div className="text-center py-12">
-          <h1 className="text-2xl font-semibold mb-4">My Profile</h1>
-          <p className="text-dark-green/80 mb-6">
-            Please sign in to view your profile.
-          </p>
-          <SignInButton>
-            <button className="px-6 py-3 rounded-2xl bg-vibrant-orange text-white hover:opacity-90 transition">
-              Sign In
-            </button>
-          </SignInButton>
-        </div>
-      </SignedOut>
+                    <SignedOut>
+                <div className="text-center py-12">
+                  <h1 className="text-2xl font-display font-semibold mb-4">My Profile</h1>
+                  <p className="text-dark-green/80 mb-6">
+                    Please sign in to view your profile.
+                  </p>
+                  <SignInButton>
+                    <button className="px-6 py-3 rounded-2xl bg-vibrant-orange text-white hover:opacity-90 transition">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                </div>
+              </SignedOut>
 
       <SignedIn>
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl font-semibold mb-6">My Profile</h1>
+                        <div className="max-w-2xl mx-auto">
+                  <h1 className="text-3xl font-display font-semibold mb-6">My Profile</h1>
           
           <div className="bg-white rounded-2xl shadow-sm border border-dark-green/10 p-6 space-y-6">
             <div className="text-center">

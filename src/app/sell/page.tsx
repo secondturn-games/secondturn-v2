@@ -29,12 +29,12 @@ export default function SellPage() {
 
   return (
     <section className="space-y-6">
-      <div className="text-center">
-        <h1 className="text-3xl md:text-4xl font-semibold mb-4">List a Game</h1>
-        <p className="text-lg text-dark-green/80 max-w-2xl mx-auto">
-          Give your board game a second life by listing it for sale in our marketplace
-        </p>
-      </div>
+                    <div className="text-center">
+                <h1 className="text-3xl md:text-4xl font-display font-semibold mb-4">List a Game</h1>
+                <p className="text-lg text-dark-green/80 max-w-2xl mx-auto">
+                  Give your board game a second life by listing it for sale in our marketplace
+                </p>
+              </div>
 
       <SignedOut>
         <div className="text-center py-12">
@@ -148,7 +148,7 @@ export default function SellPage() {
           <div className="max-w-2xl mx-auto">
             <Card className="rounded-2xl border-warm-yellow/40 bg-warm-yellow/20">
               <CardContent className="p-6 text-center">
-                <h2 className="text-2xl font-semibold mb-4 text-dark-green">Demo Complete!</h2>
+                                        <h2 className="text-2xl font-display font-semibold mb-4 text-dark-green">Demo Complete!</h2>
                 <p className="text-dark-green/80 mb-4">
                   Your game "{formData.title}" would be listed here.
                 </p>

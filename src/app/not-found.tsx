@@ -5,8 +5,8 @@ export default function NotFound() {
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
       <div className="text-center space-y-6">
-        <h1 className="text-6xl font-display text-vibrant-orange">404</h1>
-        <h2 className="text-2xl font-semibold">This page is missing</h2>
+                        <h1 className="text-6xl font-display text-vibrant-orange">404</h1>
+                <h2 className="text-2xl font-display font-semibold">This page is missing</h2>
         <p className="text-dark-green/70 max-w-md mx-auto">
           Maybe it got taken off the shelf? Don't worry, you can always browse our available games!
         </p>

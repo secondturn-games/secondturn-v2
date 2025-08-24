@@ -76,7 +76,7 @@ export default function Home() {
     <section className="space-y-8">
       {/* Hero Section */}
       <div className="text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-dark-green-600 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-dark-green-600 leading-tight">
           Welcome to Second Turn Games
         </h1>
         <p className="text-xl md:text-2xl text-dark-green-500 max-w-3xl mx-auto leading-relaxed">
@@ -203,7 +203,7 @@ export default function Home() {
               
               {/* Content with Enhanced Interactions */}
               <div className="px-6 pb-6 space-y-4">
-                <h3 id={`game-title-${listing.id}`} className="font-semibold text-xl text-dark-green-600 leading-tight group-hover:text-vibrant-orange-600 transition-colors duration-300">
+                <h3 id={`game-title-${listing.id}`} className="font-display font-semibold text-xl text-dark-green-600 leading-tight group-hover:text-vibrant-orange-600 transition-colors duration-300">
                   {listing.title}
                 </h3>
                 
@@ -251,7 +251,7 @@ export default function Home() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2-7H7a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2z" />
             </svg>
           </div>
-          <h3 className="text-xl font-semibold text-dark-green-600 mb-2">No games found</h3>
+          <h3 className="text-xl font-display font-semibold text-dark-green-600 mb-2">No games found</h3>
           <p className="text-dark-green-500 text-lg mb-6">
             No games found matching "{searchTerm}". Try a different search term!
           </p>

@@ -42,6 +42,8 @@ const config: Config = {
       fontFamily: {
         sans: 'var(--font-geist), sans-serif',
         display: 'var(--font-adumu), sans-serif',
+        heading: 'var(--font-adumu), sans-serif',
+        title: 'var(--font-adumu), sans-serif',
       },
       fontSize: {
         // Enhanced typography scale for better readability
