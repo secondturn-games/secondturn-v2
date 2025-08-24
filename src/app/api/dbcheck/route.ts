@@ -7,7 +7,11 @@ export async function GET() {
     await prisma.$queryRaw`SELECT 1`;
     
     // Get database info
-    const dbInfo = await prisma.$queryRaw`
+    const dbInfo = await prisma.$queryRaw<Array<{
+      database_name: string;
+      user_name: string;
+      postgres_version: string;
+    }>>`
       SELECT 
         current_database() as database_name,
         current_user as user_name,
