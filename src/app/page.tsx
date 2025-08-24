@@ -1,103 +1,117 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+
+// Static sample data for MVP
+const sampleListings = [
+  {
+    id: 1,
+    title: "Catan (2015)",
+    price: "€25",
+    location: "Riga",
+    condition: "Like New",
+    image: "/placeholder-game.jpg"
+  },
+  {
+    id: 2,
+    title: "Ticket to Ride: Europe",
+    price: "€30",
+    location: "Tallinn",
+    condition: "Good",
+    image: "/placeholder-game.jpg"
+  },
+  {
+    id: 3,
+    title: "Pandemic",
+    price: "€20",
+    location: "Vilnius",
+    condition: "Used",
+    image: "/placeholder-game.jpg"
+  },
+  {
+    id: 4,
+    title: "Azul",
+    price: "€35",
+    location: "Riga",
+    condition: "Like New",
+    image: "/placeholder-game.jpg"
+  },
+  {
+    id: 5,
+    title: "Splendor",
+    price: "€18",
+    location: "Tallinn",
+    condition: "Good",
+    image: "/placeholder-game.jpg"
+  },
+  {
+    id: 6,
+    title: "7 Wonders",
+    price: "€28",
+    location: "Vilnius",
+    condition: "Used",
+    image: "/placeholder-game.jpg"
+  }
+];
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const filteredListings = sampleListings.filter(listing =>
+    listing.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <section className="space-y-6">
+      <div className="text-center space-y-4">
+        <h1 className="text-3xl md:text-4xl font-semibold">Welcome to Second Turn Games</h1>
+        <p className="text-lg text-dark-green/80 max-w-2xl mx-auto">
+          Give your games a second life by buying and selling used board games in the Baltics
+        </p>
+      </div>
+
+      {/* Search Bar */}
+      <div className="max-w-md mx-auto">
+        <input
+          type="search"
+          placeholder="Search games..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full px-4 py-3 rounded-2xl border border-dark-green/20 focus:outline-none focus:ring-2 focus:ring-vibrant-orange text-dark-green placeholder-dark-green/50"
+        />
+      </div>
+
+      {/* Listings Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredListings.map((listing) => (
+          <Card key={listing.id} className="rounded-2xl border-dark-green/10 hover:shadow-md transition-shadow">
+            <CardContent className="p-6">
+              <div className="aspect-video rounded-xl bg-light-beige/60 mb-4 flex items-center justify-center">
+                <span className="text-dark-green/50 text-sm">Game Image</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">{listing.title}</h3>
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium text-vibrant-orange">{listing.price}</span>
+                <span className="text-dark-green/70">{listing.location}</span>
+              </div>
+              <div className="mt-2">
+                <span className="inline-block px-2 py-1 bg-warm-yellow/20 text-dark-green/80 text-xs rounded-full">
+                  {listing.condition}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {filteredListings.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-dark-green/70 text-lg">
+            No games found matching "{searchTerm}". Try a different search term!
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      )}
+    </section>
   );
 }
