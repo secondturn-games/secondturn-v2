@@ -32,30 +32,30 @@ export default function RootLayout({
                     <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
                       {/* Logo / Brand */}
                       <div className="flex items-center gap-3 group">
-                        <div className="relative">
+                        <a href="/" className="relative" aria-label="Second Turn Games - Home">
                           <span className="text-2xl md:text-3xl font-display text-dark-green-600 group-hover:text-vibrant-orange-600 transition-colors duration-300">
                             Second Turn
                           </span>
-                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-vibrant-orange-500 to-warm-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                        </div>
+                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-vibrant-orange-500 to-warm-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" aria-hidden="true" />
+                        </a>
                         <span className="hidden md:inline text-sm text-dark-green-500 group-hover:text-dark-green-600 transition-colors duration-300">
                           Give your games a second life
                         </span>
                       </div>
 
                       {/* Navigation Links */}
-                      <nav className="hidden md:flex items-center gap-6">
-                        <a href="/" className="text-dark-green-600 hover:text-vibrant-orange-600 font-medium transition-colors duration-200 relative group">
+                      <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Main navigation">
+                        <a href="/" className="text-dark-green-600 hover:text-vibrant-orange-600 font-medium transition-colors duration-200 relative group" aria-current={typeof window !== 'undefined' && window.location.pathname === '/' ? 'page' : undefined}>
                           Browse Games
-                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-vibrant-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-vibrant-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" aria-hidden="true" />
                         </a>
-                        <a href="/sell" className="text-dark-green-600 hover:text-vibrant-orange-600 font-medium transition-colors duration-200 relative group">
+                        <a href="/sell" className="text-dark-green-600 hover:text-vibrant-orange-600 font-medium transition-colors duration-200 relative group" aria-current={typeof window !== 'undefined' && window.location.pathname === '/sell' ? 'page' : undefined}>
                           Sell a Game
-                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-vibrant-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-vibrant-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" aria-hidden="true" />
                         </a>
-                        <a href="/profile" className="text-dark-green-600 hover:text-vibrant-orange-600 font-medium transition-colors duration-200 relative group">
+                        <a href="/profile" className="text-dark-green-600 hover:text-vibrant-orange-600 font-medium transition-colors duration-200 relative group" aria-current={typeof window !== 'undefined' && window.location.pathname === '/profile' ? 'page' : undefined}>
                           Profile
-                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-vibrant-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
+                          <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-vibrant-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" aria-hidden="true" />
                         </a>
                       </nav>
 
@@ -63,12 +63,12 @@ export default function RootLayout({
                       <div className="flex items-center gap-3">
                         <SignedOut>
                           <SignInButton>
-                            <button className="px-4 py-2 rounded-2xl border-2 border-dark-green-300 text-dark-green-600 hover:bg-dark-green-50 hover:border-dark-green-400 hover:text-dark-green-700 transition-all duration-200 hover:scale-105">
+                            <button className="px-4 py-2 rounded-2xl border-2 border-dark-green-300 text-dark-green-600 hover:bg-dark-green-50 hover:border-dark-green-400 hover:text-dark-green-700 transition-all duration-200 hover:scale-105" aria-label="Sign in to your account">
                               Sign in
                             </button>
                           </SignInButton>
                           <SignUpButton>
-                            <button className="px-4 py-2 rounded-2xl bg-vibrant-orange-500 text-white hover:bg-vibrant-orange-600 transition-all duration-200 hover:scale-105 shadow-soft hover:shadow-medium">
+                            <button className="px-4 py-2 rounded-2xl bg-vibrant-orange-500 text-white hover:bg-vibrant-orange-600 transition-all duration-200 hover:scale-105 shadow-soft hover:shadow-medium" aria-label="Create a new account">
                               Join
                             </button>
                           </SignUpButton>
