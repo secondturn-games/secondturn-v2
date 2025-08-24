@@ -1,6 +1,6 @@
 "use client"
 
-import { useUser } from "@clerk/nextjs"
+import { useUser, useClerk } from "@clerk/nextjs"
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -20,6 +20,7 @@ interface UserStats {
 
 export default function ProfilePage() {
   const { user, isLoaded } = useUser()
+  const { signOut } = useClerk()
   const [userStats, setUserStats] = useState<UserStats | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -256,7 +257,7 @@ export default function ProfilePage() {
       {/* Sign Out */}
       <div className="text-center">
         <Button 
-          onClick={() => user.signOut()}
+          onClick={() => signOut({ redirectUrl: '/' })}
           variant="outline"
           className="border-dark-green-200 text-dark-green-600 hover:bg-dark-green-50 px-8 py-3 rounded-2xl"
         >

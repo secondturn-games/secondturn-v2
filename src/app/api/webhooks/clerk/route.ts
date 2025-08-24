@@ -56,9 +56,9 @@ export async function POST(req: Request) {
             const result = await createUserProfile({
               clerkId: id,
               email: primaryEmail.email_address,
-              firstName: first_name,
-              lastName: last_name,
-              avatarUrl: image_url,
+              firstName: first_name || undefined,
+              lastName: last_name || undefined,
+              avatarUrl: image_url || undefined,
             })
             
             if (!result.success) {
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
 
         case 'user.deleted':
           // User deleted their account - remove from our database
-          const deleteResult = await deleteUserProfile(evt.data.id)
+          const deleteResult = await deleteUserProfile(evt.data.id as string)
           
           if (!deleteResult.success) {
             console.error('Failed to delete user profile:', deleteResult.error)
