@@ -41,6 +41,36 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Second Turn Games Brand Colors */
+  --color-light-beige: var(--light-beige);
+  --color-light-beige-50: var(--light-beige-50);
+  --color-light-beige-100: var(--light-beige-100);
+  --color-light-beige-200: var(--light-beige-200);
+  --color-light-beige-300: var(--light-beige-300);
+  --color-vibrant-orange: var(--vibrant-orange);
+  --color-vibrant-orange-50: var(--vibrant-orange-50);
+  --color-vibrant-orange-100: var(--vibrant-orange-100);
+  --color-vibrant-orange-200: var(--vibrant-orange-200);
+  --color-vibrant-orange-300: var(--vibrant-orange-300);
+  --color-vibrant-orange-400: var(--vibrant-orange-400);
+  --color-vibrant-orange-500: var(--vibrant-orange-500);
+  --color-vibrant-orange-600: var(--vibrant-orange-600);
+  --color-warm-yellow: var(--warm-yellow);
+  --color-warm-yellow-50: var(--warm-yellow-50);
+  --color-warm-yellow-100: var(--warm-yellow-100);
+  --color-warm-yellow-200: var(--warm-yellow-200);
+  --color-warm-yellow-300: var(--warm-yellow-300);
+  --color-warm-yellow-400: var(--warm-yellow-400);
+  --color-warm-yellow-500: var(--warm-yellow-500);
+  --color-dark-green: var(--dark-green);
+  --color-dark-green-50: var(--dark-green-50);
+  --color-dark-green-100: var(--dark-green-100);
+  --color-dark-green-200: var(--dark-green-200);
+  --color-dark-green-300: var(--dark-green-300);
+  --color-dark-green-400: var(--dark-green-400);
+  --color-dark-green-500: var(--dark-green-500);
+  --color-dark-green-600: var(--dark-green-600);
 }
 
 :root {
@@ -76,6 +106,36 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Second Turn Games Brand Colors */
+  --light-beige: #E6EAD7;
+  --light-beige-50: #F7F8F4;
+  --light-beige-100: #F0F2E9;
+  --light-beige-200: #E6EAD7;
+  --light-beige-300: #D8DCC8;
+  --vibrant-orange: #D95323;
+  --vibrant-orange-50: #FEF2F0;
+  --vibrant-orange-100: #FDE4E0;
+  --vibrant-orange-200: #FBC7BC;
+  --vibrant-orange-300: #F8A395;
+  --vibrant-orange-400: #F47A66;
+  --vibrant-orange-500: #D95323;
+  --vibrant-orange-600: #C44A1F;
+  --warm-yellow: #F2C94C;
+  --warm-yellow-50: #FFFBEB;
+  --warm-yellow-100: #FEF3C7;
+  --warm-yellow-200: #FDE68A;
+  --warm-yellow-300: #FCD34D;
+  --warm-yellow-400: #F2C94C;
+  --warm-yellow-500: #EAB308;
+  --dark-green: #29432B;
+  --dark-green-50: #F0F4F0;
+  --dark-green-100: #E1E9E1;
+  --dark-green-200: #C3D3C3;
+  --dark-green-300: #A5BDA5;
+  --dark-green-400: #87A787;
+  --dark-green-500: #29432B;
+  --dark-green-600: #1F331F;
 }
 
 .dark {
@@ -117,6 +177,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-light-beige-50 text-dark-green-600;
   }
 }
