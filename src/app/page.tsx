@@ -63,42 +63,75 @@ export default function Home() {
   );
 
   return (
-    <section className="space-y-6">
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl md:text-4xl font-semibold">Welcome to Second Turn Games</h1>
-        <p className="text-lg text-dark-green/80 max-w-2xl mx-auto">
+    <section className="space-y-8">
+      {/* Hero Section */}
+      <div className="text-center space-y-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-dark-green-600 leading-tight">
+          Welcome to Second Turn Games
+        </h1>
+        <p className="text-xl md:text-2xl text-dark-green-500 max-w-3xl mx-auto leading-relaxed">
           Give your games a second life by buying and selling used board games in the Baltics
         </p>
       </div>
 
       {/* Search Bar */}
-      <div className="max-w-md mx-auto">
-        <input
-          type="search"
-          placeholder="Search games..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-3 rounded-2xl border border-dark-green/20 focus:outline-none focus:ring-2 focus:ring-vibrant-orange text-dark-green placeholder-dark-green/50"
-        />
+      <div className="max-w-lg mx-auto">
+        <div className="relative">
+          <input
+            type="search"
+            placeholder="Search games..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-6 py-4 rounded-2xl border-2 border-dark-green-200 focus:outline-none focus:border-vibrant-orange-500 focus:ring-4 focus:ring-vibrant-orange-500/20 text-lg text-dark-green-600 placeholder-dark-green-400 shadow-soft transition-all duration-200"
+          />
+          <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+            <svg className="h-6 w-6 text-dark-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       {/* Listings Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredListings.map((listing) => (
-          <Card key={listing.id} className="rounded-2xl border-dark-green/10 hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="aspect-video rounded-xl bg-light-beige/60 mb-4 flex items-center justify-center">
-                <span className="text-dark-green/50 text-sm">Game Image</span>
+          <Card key={listing.id} className="group cursor-pointer transition-all duration-300 hover:-translate-y-1">
+            <CardContent className="p-0">
+              {/* Image Placeholder */}
+              <div className="aspect-[4/3] rounded-t-2xl bg-gradient-to-br from-light-beige-100 to-light-beige-200 mb-4 flex items-center justify-center group-hover:from-light-beige-200 group-hover:to-light-beige-300 transition-all duration-300">
+                <div className="text-center space-y-2">
+                  <div className="w-16 h-16 bg-vibrant-orange-100 rounded-full mx-auto flex items-center justify-center">
+                    <svg className="w-8 h-8 text-vibrant-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span className="text-dark-green-400 text-sm font-medium">Game Image</span>
+                </div>
               </div>
-              <h3 className="font-semibold text-lg mb-2">{listing.title}</h3>
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-medium text-vibrant-orange">{listing.price}</span>
-                <span className="text-dark-green/70">{listing.location}</span>
-              </div>
-              <div className="mt-2">
-                <span className="inline-block px-2 py-1 bg-warm-yellow/20 text-dark-green/80 text-xs rounded-full">
-                  {listing.condition}
-                </span>
+              
+              {/* Content */}
+              <div className="px-6 pb-6 space-y-4">
+                <h3 className="font-semibold text-xl text-dark-green-600 leading-tight group-hover:text-vibrant-orange-600 transition-colors duration-200">
+                  {listing.title}
+                </h3>
+                
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-2xl text-vibrant-orange-500">
+                    {listing.price}
+                  </span>
+                  <span className="text-dark-green-500 text-sm font-medium">
+                    {listing.location}
+                  </span>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex items-center px-3 py-1.5 bg-warm-yellow-100 text-dark-green-700 text-sm font-medium rounded-full border border-warm-yellow-200">
+                    {listing.condition}
+                  </span>
+                  <button className="text-vibrant-orange-500 hover:text-vibrant-orange-600 font-medium text-sm transition-colors duration-200">
+                    View Details →
+                  </button>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -106,8 +139,14 @@ export default function Home() {
       </div>
 
       {filteredListings.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-dark-green/70 text-lg">
+        <div className="text-center py-16">
+          <div className="w-24 h-24 bg-light-beige-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+            <svg className="w-12 h-12 text-dark-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2-7H7a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2z" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-semibold text-dark-green-600 mb-2">No games found</h3>
+          <p className="text-dark-green-500 text-lg">
             No games found matching "{searchTerm}". Try a different search term!
           </p>
         </div>
