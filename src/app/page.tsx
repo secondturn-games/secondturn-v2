@@ -57,17 +57,8 @@ const sampleListings = [
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // No artificial loading for now
   const [filteredListings, setFilteredListings] = useState(sampleListings);
-  
-  // Simulate loading for demo purposes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-    
-    return () => clearTimeout(timer);
-  }, []);
   
   // Filter listings with debouncing
   useEffect(() => {
@@ -132,15 +123,35 @@ export default function Home() {
             </div>
           )}
         </div>
+        
+        {/* Search Status */}
+        {searchTerm.length > 0 && (
+          <div className="text-center mt-3">
+            <span className="text-sm text-dark-green-500">
+              {filteredListings.length === 0 ? 'No results found' : `Found ${filteredListings.length} game${filteredListings.length !== 1 ? 's' : ''}`}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Listings Grid */}
+      <div className="text-center mb-6">
+        <span className="text-sm text-dark-green-500">
+          {searchTerm.length === 0 
+            ? `Showing all ${filteredListings.length} available games`
+            : `Found ${filteredListings.length} game${filteredListings.length !== 1 ? 's' : ''} matching "${searchTerm}"`
+          }
+        </span>
+      </div>
+      
       {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {[...Array(8)].map((_, index) => (
+          {[...Array(6)].map((_, index) => (
             <div key={index} className="bg-white rounded-2xl border border-dark-green-100 p-0 overflow-hidden animate-pulse">
               {/* Skeleton Image */}
-              <div className="aspect-[4/3] bg-light-beige-200 mb-4" />
+              <div className="aspect-[4/3] bg-gradient-to-br from-light-beige-100 to-light-beige-200 mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-light-beige-300 rounded-full" />
+              </div>
               
               {/* Skeleton Content */}
               <div className="px-6 pb-6 space-y-4">
