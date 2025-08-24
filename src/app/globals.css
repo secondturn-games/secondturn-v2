@@ -73,8 +73,8 @@
   --color-dark-green-600: var(--dark-green-600);
   
   /* Font Family Mappings */
-  --font-sans: var(--font-geist-sans);
-  --font-display: var(--font-adumu);
+  --font-sans: var(--font-fredoka);
+  --font-display: var(--font-righteous);
 }
 
 :root {

@@ -40,10 +40,10 @@ const config: Config = {
         'dark-green-600': '#1F331F',
       },
       fontFamily: {
-        sans: 'var(--font-geist), sans-serif',
-        display: 'var(--font-adumu), sans-serif',
-        heading: 'var(--font-adumu), sans-serif',
-        title: 'var(--font-adumu), sans-serif',
+        sans: 'var(--font-fredoka), sans-serif',
+        display: 'var(--font-righteous), sans-serif',
+        heading: 'var(--font-righteous), sans-serif',
+        title: 'var(--font-righteous), sans-serif',
       },
       fontSize: {
         // Enhanced typography scale for better readability

@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import localFont from "next/font/local";
+import { Righteous, Fredoka } from "next/font/google";
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import "./globals.css";
 
-const geist = Geist({
+const righteous = Righteous({
   subsets: ["latin"],
-  variable: "--font-geist",
+  variable: "--font-righteous",
+  weight: "400",
+  display: "swap",
 });
 
-const adumu = localFont({
-  src: "../fonts/Adumu-Inline.ttf", // Using Inline variant for better visibility
-  variable: "--font-adumu",
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  variable: "--font-fredoka",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
-  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -28,14 +29,8 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${geist.variable} ${adumu.variable}`}>
+      <html lang="en" className={`${righteous.variable} ${fredoka.variable}`}>
         <body className="bg-light-beige text-dark-green font-sans min-h-screen">
-          {/* Font Test - Remove this after confirming Adumu works */}
-          <div className="fixed top-4 right-4 z-50 bg-white p-2 rounded shadow text-xs">
-            <div className="font-display text-vibrant-orange-500">Adumu Test</div>
-            <div className="font-sans text-dark-green-500">Geist Test</div>
-          </div>
-          
           <header className="border-b border-dark-green/10 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
                     <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
                       {/* Logo / Brand */}
